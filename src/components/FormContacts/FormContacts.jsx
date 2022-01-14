@@ -1,5 +1,6 @@
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { getItems } from '../../redux/contacts/contactsSelectors';
 import { addContact } from '../../redux/contacts/itemsOperations';
 import Input from '../../shared/components/Input';
 import Button from '../../shared/components/Button';
@@ -8,6 +9,7 @@ import s from './FormContacts.module.css';
 
 const FormContacts = () => {
   const dispatch = useDispatch();
+  const items = useSelector(getItems);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -16,14 +18,31 @@ const FormContacts = () => {
     const contact = {};
 
     formElements.forEach((value, name) => (contact[name] = value));
+
     const { name, number } = contact;
 
     if (!name || !number) {
       return alert('Please fill the form');
     }
+    checkContact(contact);
+
+    resetForm();
+  }
+
+  function checkContact(contact) {
+    const { name } = contact;
+    const lowerCaseName = name.toLowerCase();
+
+    const findInArray = items.find(({ name }) => {
+      const lowerCaseStateName = name.toLowerCase();
+      return lowerCaseStateName === lowerCaseName;
+    });
+
+    if (findInArray) {
+      return alert(`${name} is already in your contacts!`);
+    }
 
     dispatch(addContact(contact));
-    resetForm();
   }
 
   function resetForm() {

@@ -6,19 +6,7 @@ import { filterContacts } from './filterAction';
 
 const items = createReducer([], {
   [getContacts.fulfilled]: (_, { payload }) => payload,
-  [addContact.fulfilled]: (state, { payload }) => {
-    const lowerCaseName = payload.name.toLowerCase();
-
-    const findInArray = state.find(({ name }) => {
-      const lowerCaseStateName = name.toLowerCase();
-      return lowerCaseStateName === lowerCaseName;
-    });
-
-    if (findInArray) {
-      return alert(`${payload.name} is already in your contacts!`);
-    }
-    return [...state, payload];
-  },
+  [addContact.fulfilled]: (state, { payload }) => [...state, payload],
   [deleteContact.fulfilled]: (state, { payload }) => state.filter(item => item.id !== payload),
 });
 
