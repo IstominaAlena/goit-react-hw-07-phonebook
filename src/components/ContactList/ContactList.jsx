@@ -26,12 +26,12 @@ const ContactList = () => {
 
   return (
     <ul className={s.contactList}>
-      {filterContactsHandler().map(({ id, name, number }) => (
+      {filterContactsHandler().map(({ id, name, phone }) => (
         <li key={id} className={s.contactItem}>
           <img src={toonavatar.generate_avatar()} alt="img" width="60" className={s.contactImg} />
           <div>
             <p>{name}:</p>
-            <p>{number}</p>
+            <p>{phone}</p>
           </div>
 
           <Button type="button" text="&#128473;" onClick={() => dispatch(deleteContact(id))} />

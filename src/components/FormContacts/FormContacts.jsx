@@ -19,9 +19,9 @@ const FormContacts = () => {
 
     formElements.forEach((value, name) => (contact[name] = value));
 
-    const { name, number } = contact;
+    const { name, phone } = contact;
 
-    if (!name || !number) {
+    if (!name || !phone) {
       return alert('Please fill the form');
     }
     checkContact(contact);
@@ -47,7 +47,7 @@ const FormContacts = () => {
 
   function resetForm() {
     const nameInput = document.querySelector('input[name="name"]');
-    const numberInput = document.querySelector('input[name="number"]');
+    const numberInput = document.querySelector('input[name="phone"]');
 
     nameInput.value = '';
     numberInput.value = '';
@@ -68,7 +68,7 @@ const FormContacts = () => {
         <Input
           labelName="Number"
           type="tel"
-          name="number"
+          name="phone"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           placeholderValue="+38-099-123-45-67"

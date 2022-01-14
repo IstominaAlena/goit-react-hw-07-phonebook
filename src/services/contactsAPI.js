@@ -15,11 +15,11 @@ export const addContactAPI = async contact => {
     ...contact,
     id: data.id,
   };
+  console.log(responsedContact);
   return responsedContact;
 };
 
 export const deleteContactAPI = async id => {
-  console.log('test');
   await axios.delete(path + '/' + id);
   return id;
 };
