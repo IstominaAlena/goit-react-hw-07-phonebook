@@ -15,7 +15,6 @@ export const addContactAPI = async contact => {
     ...contact,
     id: data.id,
   };
-  console.log(responsedContact);
   return responsedContact;
 };
 
